@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Egbert | PhD Student - Neurosymbolic AI Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #aaf0d1;
+            --accent-color: #8b7fb8;
+            --dark-accent: #6b5f8f;
+            --text-dark: #2c3e50;
+            --text-light: #5a6c7d;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafb;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Subtle floral background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -30%;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400' opacity='0.03'%3E%3Cpath d='M200 100c0-55 45-100 100-100s100 45 100 100-45 100-100 100c55 0 100 45 100 100s-45 100-100 100-100-45-100-100c0 55-45 100-100 100S0 355 0 300s45-100 100-100c-55 0-100-45-100-100S45 0 100 0s100 45 100 100' fill='%238b7fb8'/%3E%3C/svg%3E") no-repeat;
+            background-size: 80%;
+            opacity: 0.4;
+            z-index: -1;
+            transform: rotate(15deg);
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(170, 240, 209, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-name:hover {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(170, 240, 209, 0.1) 0%, rgba(139, 127, 184, 0.05) 100%);
+            padding: 4rem 2rem;
+            border-bottom: 1px solid rgba(170, 240, 209, 0.3);
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(139, 127, 184, 0.2);
+            border: 4px solid var(--primary-color);
+        }
+        
+        .hero-text h1 {
+            font-size: 3rem;
+            color: var(--dark-accent);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .affiliation {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-white);
+            color: var(--dark-accent);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 127, 184, 0.2);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--dark-accent);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+        
+        /* About Section */
+        .about-content {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 5px 20px rgba(170, 240, 209, 0.1);
+        }
+        
+        .about-content p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        /* Research Section */
+        .research-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .research-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(139, 127, 184, 0.1);
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 127, 184, 0.15);
+        }
+        
+        .research-card h3 {
+            color: var(--dark-accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .keyword {
+            background: rgba(170, 240, 209, 0.3);
+            color: var(--dark-accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary-color);
+        }
+        
+        /* Publications */
+        .publication-list {
+            list-style: none;
+        }
+        
+        .publication-item {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 3px 10px rgba(170, 240, 209, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .publication-item:hover {
+            box-shadow: 0 5px 20px rgba(139, 127, 184, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .pub-title {
+            font-weight: 600;
+            color: var(--dark-accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .pub-authors {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+        
+        .pub-venue {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Teaching Section */
+        .teaching-card {
+            background: linear-gradient(135deg, rgba(170, 240, 209, 0.1) 0%, rgba(139, 127, 184, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .teaching-card h4 {
+            color: var(--dark-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, rgba(139, 127, 184, 0.3) 100%);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .profile-img {
+                margin: 0 auto;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+        
+        /* Decorative elements */
+        .section::before {
+            content: '';
+            position: absolute;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='%23aaf0d1' stroke-width='0.5' opacity='0.1'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%238b7fb8' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E") no-repeat;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="nav-name">Cameron Egbert</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="headshot-placeholder.jpg" alt="Cameron Egbert" class="profile-img">
+            <div class="hero-text">
+                <h1>Cameron Egbert</h1>
+                <p class="hero-subtitle">PhD Student in Computer Science</p>
+                <p class="affiliation">North Carolina State University<br>
+                Potential Advisor: Dr. Min Chi</p>
+                <p style="color: var(--text-light); font-size: 1.1rem; margin-top: 1rem;">
+                    Researching Neurosymbolic Reinforcement Learning to bridge connectionist and symbolic AI approaches
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <span>📄</span> CV
+                    </a>
+                    <a href="#" class="social-link">
+                        <span>🎓</span> Google Scholar
+                    </a>
+                    <a href="#" class="social-link">
+                        <span>🔬</span> ORCID
+                    </a>
+                    <a href="#" class="social-link">
+                        <span>💼</span> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Donec auctor a lacus in tincidunt. Proin blandit, tortor at ultrices tincidunt, elit sapien facilisis lectus, nec accumsan nulla massa a odio. Sed cursus turpis in mauris vehicula, et consequat nisl faucibus. Donec commodo elementum lacus, sit amet varius ante sollicitudin quis. Quisque pharetra orci vel diam elementum, at dictum felis aliquet.
+                </p>
+                <p>
+                    <strong>Education:</strong> I completed both my Bachelor's and Master's degrees in Computer Science at the University of Kentucky before joining NC State's PhD program. My academic journey has been driven by a passion for understanding how we can make AI systems both powerful and interpretable.
+                </p>
+                <p>
+                    Currently, I serve as a Graduate Teaching Assistant at NCSU, where I help teach Data Structures and Algorithms, sharing my enthusiasm for computational thinking with the next generation of computer scientists.
+                </p>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research" class="section">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3>Neurosymbolic Reinforcement Learning</h3>
+                    <p>
+                        My research focuses on empowering successful connectionist approaches with logically verifiable and explainable symbolic methods. By integrating neural networks with symbolic planning and reasoning, I aim to create AI systems that combine the learning capabilities of deep learning with the interpretability and reliability of symbolic AI. This hybrid approach promises to deliver more trustworthy, transparent, and robust intelligent systems that can both learn from data and reason about their decisions in human-understandable terms.
+                    </p>
+                    <div class="keywords">
+                        <span class="keyword">Neurosymbolic AI</span>
+                        <span class="keyword">Reinforcement Learning</span>
+                        <span class="keyword">Explainable AI</span>
+                        <span class="keyword">Hybrid Intelligence</span>
+                        <span class="keyword">Symbolic Planning</span>
+                    </div>
+                </div>
+                
+                <div class="research-card">
+                    <h3>Research Methodologies</h3>
+                    <p>My work employs a diverse set of methodologies including:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-dark);">
+                        <li>Deep Reinforcement Learning (DRL) with symbolic constraints</li>
+                        <li>Logic-based program synthesis and inductive logic programming</li>
+                        <li>Hierarchical planning with neural sub-policies</li>
+                        <li>Knowledge graph integration with neural architectures</li>
+                        <li>Formal verification methods for learned policies</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="section">
+            <h2 class="section-title">Publications</h2>
+            <ul class="publication-list">
+                <li class="publication-item">
+                    <div class="pub-title">Lorem Ipsum: Advancing Neurosymbolic Integration through Hierarchical Reinforcement Learning</div>
+                    <div class="pub-authors">Cameron Egbert, Jane Doe, John Smith</div>
+                    <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2024</div>
+                </li>
+                <li class="publication-item">
+                    <div class="pub-title">Dolor Sit Amet: A Framework for Explainable Policy Learning in Complex Environments</div>
+                    <div class="pub-authors">Cameron Egbert, Alice Johnson</div>
+                    <div class="pub-venue">International Conference on Machine Learning (ICML), 2024</div>
+                </li>
+                <li class="publication-item">
+                    <div class="pub-title">Consectetur Adipiscing: Bridging the Gap Between Symbolic Planning and Deep Learning</div>
+                    <div class="pub-authors">Cameron Egbert, Robert Chen, Maria Garcia</div>
+                    <div class="pub-venue">AAAI Conference on Artificial Intelligence, 2023</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Teaching Section -->
+        <section id="teaching" class="section">
+            <h2 class="section-title">Teaching Experience</h2>
+            <div class="teaching-card">
+                <h4>Graduate Teaching Assistant - Data Structures and Algorithms</h4>
+                <p><strong>North Carolina State University</strong> | Fall 2024 - Present</p>
+                <p>Leading lab sessions, grading assignments, and holding office hours for undergraduate computer science students. Topics covered include algorithm analysis, sorting algorithms, graph algorithms, dynamic programming, and advanced data structures.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact</h2>
+            <div class="about-content">
+                <p>I'm always interested in discussing research collaborations, neurosymbolic AI, or opportunities in the field. Feel free to reach out!</p>
+                <p style="margin-top: 1.5rem;">
+                    <strong>Email:</strong> cegbert [at] ncsu [dot] edu<br>
+                    <strong>Office:</strong> Engineering Building II, NC State University<br>
+                    <strong>Department:</strong> Computer Science
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Cameron Egbert. All rights reserved. | NC State University</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active state to nav links on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.style.borderBottomColor = 'transparent';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.borderBottomColor = 'var(--primary-color)';
+                }
+            });
+        });
+
+        // CV Download functionality
+        document.querySelector('.social-link').addEventListener('click', function(e) {
+            if (this.textContent.includes('CV')) {
+                e.preventDefault();
+                alert('CV download functionality would be implemented here. You can replace this with a link to your actual CV PDF.');
+            }
+        });
+    </script>
+</body>
+</html>
